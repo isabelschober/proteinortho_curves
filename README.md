@@ -1,5 +1,10 @@
 # proteinortho_curves
 
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2559282.svg)](https://doi.org/10.5281/zenodo.2559282)
+
+
+
 This script creates accumulation curves for pan- and core-genomes calculated with Proteinortho ([Lechner et al. 2011](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-12-124).)
 
 ## Requirements
