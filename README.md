@@ -1,6 +1,6 @@
 # proteinortho_curves
 
-This script creates accumulation curves for pan- and core-genomes calculated with Proteinortho (Lechner et al. 2011). 
+This script creates accumulation curves for pan- and core-genomes calculated with Proteinortho ([Lechner et al. 2011](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-12-124).)
 
 ## Requirements
 - R 
@@ -11,12 +11,14 @@ This script creates accumulation curves for pan- and core-genomes calculated wit
 
 ## Usage
 
+
 ```bash
 ./proteinortho_curves.r [options]
 ```
 
 ### Calculations and first plot
 
+Proteinortho must have been run using the "-singles" option!
 
 ```bash
 ./proteinortho_curves.r -p <your_project_name>.proteinortho -i <number_of_iterations> 
