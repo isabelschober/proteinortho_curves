@@ -14,6 +14,15 @@ This script creates accumulation curves for pan- and core-genomes calculated wit
 - R package "optparse"
 - Proteinortho output calculated with "-singles" option
 
+```
+Versions I use:
+- proteinortho v5.16b
+- R version 3.4.4
+- ggplot2_3.0.0
+- optparse_1.6.0
+```
+
+
 ## Usage
 
 
