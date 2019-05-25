@@ -1,7 +1,7 @@
 # proteinortho_curves
 
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2559282.svg)](https://doi.org/10.5281/zenodo.2559282)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2559281.svg)](https://doi.org/10.5281/zenodo.2559281)
 
 
 
