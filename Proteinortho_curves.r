@@ -3,7 +3,7 @@
 ################################################################
 #                                                              #
 #                         by Isabel                            #  
-#                         25.05.2019                           #
+#                         13.11.2018                           #
 #         Usage: ./proteinortho_curves.r [options]             #
 #        See ./proteinortho_curves.r -h for options            #
 #                                                              #
@@ -19,12 +19,11 @@ option_list=list(
   make_option(c("-d","--draw_only"), action="store", default=FALSE, type="logical", help="Draw plot from a previously calculated table [default=%default]"),
   make_option(c("-t","--table"), action="store", default=NA, type="character", help="When -d TRUE, previously calculated output from proteinortho_curves.r <proteinortho_curves.txt>"),
   make_option(c("-o","--output"), action="store", default="proteinortho_curves", type="character", help="Name of output file(s) [default=%default]"),
-  make_option(c("-b","--errorbars"), action="store", default=FALSE, type="logical", help="Set -b TRUE to draw median with error bars instead of boxplots"),
   make_option(c("--plot_width"), action="store", default=10, type="numeric", help="Width of the plot [default=%default]"),
   make_option(c("--plot_height"), action="store", default=7, type="numeric", help="Height of the plot [default=%default]"),
-  make_option(c("--pan_color"), action="store", default="#267285", type="character", help="Color of the pan-genome boxplots [default=%default]"),
-  make_option(c("--pan_text_color"), action="store", default="#267285", type="character", help="Color of the pan-genome text [default=%default]"),
-  make_option(c("--core_color"), action="store", default="#8b104e", type="character", help="Color of the core-genome boxplots [default=%default]"),
+  make_option(c("--pan_color"), action="store", default="#82c6b8", type="character", help="Color of the pan-genome boxplots [default=%default]"),
+  make_option(c("--pan_text_color"), action="store", default="#0d9a7e", type="character", help="Color of the pan-genome text [default=%default]"),
+  make_option(c("--core_color"), action="store", default="#c35b8e", type="character", help="Color of the core-genome boxplots [default=%default]"),
   make_option(c("--core_text_color"), action="store", default="#8b104e", type="character", help="Color of the pan-genome text [default=%default]"),
   make_option(c("--plot_title"), action="store", default="Proteinortho Pan- and Core-Genome Size", type="character", help="Title of the plot [default=%default]"),
   make_option(c("--plot_title_size"), action="store", default=12, type="integer", help="Size of the title of the plot [default=%default]"),
@@ -38,7 +37,7 @@ option_list=list(
   make_option(c("--x_core_text"), action="store", default=0.84, type="numeric", help="Relative x position of the core-genome text [default=%default]"),
   make_option(c("--y_core_text"), action="store", default=0.46, type="numeric", help="Relative y position of the core-genome text [default=%default]"),
   make_option(c("--pan_core_text_size"), action="store", default=1, type="numeric", help="Relative size of the pan- and core-genome text [default=%default]")
-  )
+)
 
 opt_parser=OptionParser(option_list=option_list)
 opt = parse_args(opt_parser)
@@ -131,23 +130,8 @@ for (n in seq(1:cols)){
 
 # draw curves
 gg=ggplot()
-if(opt$errorbars==FALSE){
-  gg=gg+geom_boxplot(data=out, aes(x=out$nrGenomes, y=out$sizePan), fill=opt$pan_color)
-  gg=gg+geom_boxplot(data=out, aes(x=out$nrGenomes, y=out$sizeCore), fill=opt$core_color)
-} else if(opt$errorbars==TRUE){
-  gg=gg+geom_point(data=out, mapping=aes(x=out$nrGenomes, y=out$sizePan), fill=opt$pan_color, stat = "summary",fun.y=median, color=opt$pan_color)
-  gg=gg+geom_point(data=out, mapping=aes(x=out$nrGenomes, y=out$sizeCore), fill=opt$core_color, stat = "summary",fun.y=median, color=opt$core_color)
-  gg=gg+geom_errorbar(data=out, mapping=aes(x=out$nrGenomes, y=out$sizePan), color=opt$pan_color,
-                stat = "summary",
-                fun.ymin = min,
-                fun.ymax = max,
-                fun.y = median)
-  gg=gg+geom_errorbar(data=out, mapping = aes(x=out$nrGenomes, y=out$sizeCore), color=opt$core_color,
-                      stat = "summary",
-                      fun.ymin = min,
-                      fun.ymax = max,
-                      fun.y = median)
-}
+gg=gg+geom_boxplot(data=out, aes(x=out$nrGenomes, y=out$sizePan), fill=opt$pan_color)
+gg=gg+geom_boxplot(data=out, aes(x=out$nrGenomes, y=out$sizeCore), fill=opt$core_color)
 gg=gg+ggtitle(opt$plot_title)
 gg=gg+ylab(opt$y_axis_title)
 gg=gg+xlab(opt$x_axis_title)
