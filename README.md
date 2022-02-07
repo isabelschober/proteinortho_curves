@@ -7,7 +7,7 @@
 
 This script creates accumulation curves for pan- and core-genomes calculated with Proteinortho ([Lechner et al. 2011](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-12-124).)
 
- <img src="https://user-images.githubusercontent.com/47421170/152796728-8fb9250f-b14f-4739-adc9-23a83572c056.png" width="500" >
+ <img src="https://user-images.githubusercontent.com/47421170/152796728-8fb9250f-b14f-4739-adc9-23a83572c056.png" width="1000" >
 
 ## Requirements
 - R 
