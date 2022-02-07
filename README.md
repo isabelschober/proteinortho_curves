@@ -110,10 +110,10 @@ Options:
 		Size of the title of the plot [default=12]
 
 	--x_axis_title=X_AXIS_TITLE
-		Title of the x axis [default=number of genomes]
+		Title of the x axis [default=Number of genomes]
 
 	--y_axis_title=Y_AXIS_TITLE
-		Title of the y axis [default=number of orthologs]
+		Title of the y axis [default=Number of orthologs]
 
 	--axis_title_size=AXIS_TITLE_SIZE
 		Size of the x and y axis titles [default=10]
