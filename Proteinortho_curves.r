@@ -4,6 +4,7 @@
 #                                                              #
 #                         by Isabel                            #  
 #                         13.11.2018                           #
+#                   last updated (7.2.2022)                    #
 #         Usage: ./proteinortho_curves.r [options]             #
 #        See ./proteinortho_curves.r -h for options            #
 #                                                              #
@@ -27,8 +28,8 @@ option_list=list(
   make_option(c("--core_text_color"), action="store", default="#8b104e", type="character", help="Color of the pan-genome text [default=%default]"),
   make_option(c("--plot_title"), action="store", default="Proteinortho Pan- and Core-Genome Size", type="character", help="Title of the plot [default=%default]"),
   make_option(c("--plot_title_size"), action="store", default=12, type="integer", help="Size of the title of the plot [default=%default]"),
-  make_option(c("--x_axis_title"), action="store", default="number of genomes", type="character", help="Title of the x axis [default=%default]"),
-  make_option(c("--y_axis_title"), action="store", default="number of orthologs", type="character", help="Title of the y axis [default=%default]"),
+  make_option(c("--x_axis_title"), action="store", default="Number of genomes", type="character", help="Title of the x axis [default=%default]"),
+  make_option(c("--y_axis_title"), action="store", default="Number of orthologs", type="character", help="Title of the y axis [default=%default]"),
   make_option(c("--axis_title_size"), action="store", default=10, type="integer", help="Size of the x and y axis titles [default=%default]"),
   make_option(c("--axis_text_size"), action="store", default=8, type="integer", help="Size of the x and y axis text [default=%default]"),
   make_option(c("--axis_text_mode"), action="store", default=1, type="integer", help="How many tick marks to show on x axis. 1=all, 2=every second, etc [default=%default]"),
@@ -130,8 +131,8 @@ for (n in seq(1:cols)){
 
 # draw curves
 gg=ggplot()
-gg=gg+geom_boxplot(data=out, aes(x=out$nrGenomes, y=out$sizePan), fill=opt$pan_color)
-gg=gg+geom_boxplot(data=out, aes(x=out$nrGenomes, y=out$sizeCore), fill=opt$core_color)
+gg=gg+geom_boxplot(data=out, aes(x=nrGenomes, y=sizePan), fill=opt$pan_color)
+gg=gg+geom_boxplot(data=out, aes(x=nrGenomes, y=sizeCore), fill=opt$core_color)
 gg=gg+ggtitle(opt$plot_title)
 gg=gg+ylab(opt$y_axis_title)
 gg=gg+xlab(opt$x_axis_title)
@@ -140,14 +141,15 @@ pan_grob=grid.text(paste0("Pan-genome: ",out[nrow(out),3]),x=opt$x_pan_text, y=o
 core_grob=grid.text(paste0("Core-genome: ",out[nrow(out),2]),x=opt$x_core_text, y=opt$y_core_text, gp=gpar(col=opt$core_text_color,cex=opt$pan_core_text_size), draw=F)
 gg=gg+annotation_custom(pan_grob)
 gg=gg+annotation_custom(core_grob)
-gg=gg + theme(
+gg=gg+theme(
   plot.title = element_text(margin=margin(b=6), size=opt$plot_title_size))
-gg=gg + theme(
+gg=gg+theme(
   axis.title.x = element_text(margin=margin(t=6), size=opt$axis_title_size),
   axis.title.y = element_text(margin=margin(r=6), size=opt$axis_title_size))
-gg=gg + theme(
+gg=gg+theme(
   axis.text.x = element_text(size=opt$axis_text_size),
   axis.text.y = element_text(size=opt$axis_text_size))
+gg=gg+theme_bw()
 ggsave(filename=paste(opt$output,"_proteinortho_curves.png", sep=""), scale=1, width=opt$plot_width, height=opt$plot_height)
 
 cat("\nDone!\n")
