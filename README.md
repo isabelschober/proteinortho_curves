@@ -7,7 +7,7 @@
 
 This script creates accumulation curves for pan- and core-genomes calculated with Proteinortho ([Lechner et al. 2011](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-12-124).)
 
- <img src="https://user-images.githubusercontent.com/47421170/52470018-50f30e00-2b8d-11e9-9a18-fa3315d08d96.png" width="500" >
+ <img src="https://user-images.githubusercontent.com/47421170/152796728-8fb9250f-b14f-4739-adc9-23a83572c056.png" width="500" >
 
 ## Requirements
 - R 
@@ -19,9 +19,9 @@ This script creates accumulation curves for pan- and core-genomes calculated wit
 ```
 Versions I use:
 - proteinortho v5.16b
-- R version 3.4.4
-- ggplot2_3.0.0
-- optparse_1.6.0
+- R version 3.6.3
+- ggplot2_3.3.5
+- optparse_1.6.6
 ```
 
 
@@ -29,7 +29,7 @@ Versions I use:
 
 
 ```bash
-./proteinortho_curves.r [options]
+proteinortho_curves.r [options]
 ```
 
 ### Calculations and first plot
@@ -37,7 +37,7 @@ Versions I use:
 Proteinortho must have been run using the "-singles" option!
 
 ```bash
-./proteinortho_curves.r -p <your_project_name>.proteinortho -i <number_of_iterations> 
+proteinortho_curves.r -p <your_project_name>.proteinortho -i <number_of_iterations> 
 -o <output_prefix> [plot parameters]
 ```
 Output:
@@ -56,7 +56,7 @@ As the calculations can take quite some time, depending on the number of iterati
 existing proteinortho_curves table and experiment with the plot parameters. 
 
 ```bash
-./proteinortho_curves.r -d TRUE -t <output_prefix>_proteinortho_curves.txt 
+proteinortho_curves.r -d TRUE -t <output_prefix>_proteinortho_curves.txt 
 -o <output_prefix> [plot parameters]
 ```
 
