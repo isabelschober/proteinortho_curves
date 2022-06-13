@@ -4,7 +4,6 @@
 #                                                              #
 #                         by Isabel                            #  
 #                         13.11.2018                           #
-#                   last updated (7.2.2022)                    #
 #         Usage: ./proteinortho_curves.r [options]             #
 #        See ./proteinortho_curves.r -h for options            #
 #                                                              #
@@ -19,7 +18,7 @@ option_list=list(
   make_option(c("-i", "--iterations"), action="store", default=10, type="integer", help="Number of iterations to perform [default=%default]"),
   make_option(c("-d","--draw_only"), action="store", default=FALSE, type="logical", help="Draw plot from a previously calculated table [default=%default]"),
   make_option(c("-t","--table"), action="store", default=NA, type="character", help="When -d TRUE, previously calculated output from proteinortho_curves.r <proteinortho_curves.txt>"),
-  make_option(c("-o","--output"), action="store", default="proteinortho_curves", type="character", help="Name of output file(s) [default=%default]"),
+  make_option(c("-o","--output"), action="store", default="proteinortho_curves", type="character", help="Identifier for output file(s) [default=%default]"),
   make_option(c("--plot_width"), action="store", default=10, type="numeric", help="Width of the plot [default=%default]"),
   make_option(c("--plot_height"), action="store", default=7, type="numeric", help="Height of the plot [default=%default]"),
   make_option(c("--pan_color"), action="store", default="#82c6b8", type="character", help="Color of the pan-genome boxplots [default=%default]"),
@@ -110,7 +109,7 @@ if (opt$draw_only==FALSE){
   }
   cat("\n")
   # write output table
-  write.table(out, file=paste(opt$output,"_proteinortho_curves.txt", sep=""), sep="\t", row.names=F, quote=F)
+  write.table(out, file=paste(opt$output,".txt", sep=""), sep="\t", row.names=F, quote=F)
   cols=ncol(table_all)
   
 } else if (opt$draw_only==TRUE){
@@ -141,6 +140,7 @@ pan_grob=grid.text(paste0("Pan-genome: ",out[nrow(out),3]),x=opt$x_pan_text, y=o
 core_grob=grid.text(paste0("Core-genome: ",out[nrow(out),2]),x=opt$x_core_text, y=opt$y_core_text, gp=gpar(col=opt$core_text_color,cex=opt$pan_core_text_size), draw=F)
 gg=gg+annotation_custom(pan_grob)
 gg=gg+annotation_custom(core_grob)
+gg=gg+theme_bw()
 gg=gg+theme(
   plot.title = element_text(margin=margin(b=6), size=opt$plot_title_size))
 gg=gg+theme(
@@ -149,7 +149,6 @@ gg=gg+theme(
 gg=gg+theme(
   axis.text.x = element_text(size=opt$axis_text_size),
   axis.text.y = element_text(size=opt$axis_text_size))
-gg=gg+theme_bw()
-ggsave(filename=paste(opt$output,"_proteinortho_curves.png", sep=""), scale=1, width=opt$plot_width, height=opt$plot_height)
+ggsave(filename=paste(opt$output,".pdf", sep=""), scale=1, width=opt$plot_width, height=opt$plot_height)
 
 cat("\nDone!\n")
