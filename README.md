@@ -17,7 +17,7 @@ This script creates accumulation curves for pan- and core-genomes calculated wit
 - Proteinortho output calculated with "-singles" option
 
 ```
-Versions I use:
+Versions I used when writing the script:
 - proteinortho v5.16b
 - R version 3.6.3
 - ggplot2_3.3.5
